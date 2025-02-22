@@ -7,9 +7,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Create a PostgreSQL connection pool
-const pool = new Pool({
+export const pool = new Pool({
   user: process.env.POSTGRES_USER,
-  host:"localhost",
+  host: 'localhost',
   database: process.env.POSTGRES_DB,
   password: process.env.POSTGRES_PASSWORD,
   port: parseInt(process.env.POSTGRES_PORT || '5432'),
@@ -25,6 +25,6 @@ export const testDatabaseConnection = async () => {
     console.log('Connected to PostgreSQL database');
   } catch (err) {
     console.error('Failed to connect to PostgreSQL database:', err);
-    process.exit(1); // Exit the process if the database connection fails
+    // Do not exit the process; let the server start without a database connection
   }
 };
